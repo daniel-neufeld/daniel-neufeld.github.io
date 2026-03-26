@@ -15,13 +15,15 @@
       --ink:      #1A1917;
       --ink-2:    #5C5954;
       --accent:   #1D4ED8;
+      --accent-h: #1e40af;
       --accent-2: #EFF3FF;
       --tag-1: #FEF3C7; --tag-1-ink: #92400E;
       --tag-2: #DCFCE7; --tag-2-ink: #166534;
       --tag-3: #EDE9FE; --tag-3-ink: #5B21B6;
       --tag-4: #FFE4E6; --tag-4-ink: #9F1239;
-      --r: 6px;
-      --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+      --r: 8px;
+      --shadow: 0 1px 3px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,.10);
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -30,7 +32,7 @@
       min-height: 100vh; font-size: 15px; line-height: 1.6;
     }
 
-    /* Header */
+    /* ── Header ── */
     header {
       background: var(--ink); color: #fff;
       padding: 0 2rem; display: flex; align-items: center;
@@ -38,209 +40,266 @@
       position: sticky; top: 0; z-index: 100;
       height: 60px; border-bottom: 2px solid var(--accent);
     }
-    .header-title { display: flex; align-items: baseline; gap: .75rem; }
-    .header-title .subject { font-family: 'Playfair Display', serif; font-size: 1.35rem; }
-    .header-title .name { font-family: 'DM Mono', monospace; font-size: .75rem; color: #9CA3AF; letter-spacing: .08em; text-transform: uppercase; }
-    nav { display: flex; gap: .25rem; }
-    nav button {
-      background: none; border: none; color: #9CA3AF;
-      font-family: 'DM Sans', sans-serif; font-size: .82rem;
-      padding: .3rem .7rem; border-radius: var(--r);
-      cursor: pointer; transition: color .15s, background .15s;
+    .header-brand { display: flex; align-items: baseline; gap: .75rem; cursor: pointer; }
+    .header-brand .subject { font-family: 'Playfair Display', serif; font-size: 1.3rem; }
+    .header-brand .name { font-family: 'DM Mono', monospace; font-size: .72rem; color: #9CA3AF; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex; align-items: center; gap: .4rem;
+      font-size: .8rem; color: #9CA3AF;
     }
-    nav button:hover, nav button.active { color: #fff; background: rgba(255,255,255,.1); }
+    .breadcrumb .crumb {
+      cursor: pointer; transition: color .15s;
+      white-space: nowrap; max-width: 180px;
+      overflow: hidden; text-overflow: ellipsis;
+    }
+    .breadcrumb .crumb:hover { color: #fff; }
+    .breadcrumb .crumb.active { color: #fff; cursor: default; }
+    .breadcrumb .sep { opacity: .4; }
 
-    /* Layout */
-    main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+    /* ── Main ── */
+    main { max-width: 1060px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
 
-    /* Hero */
-    .hero {
+    /* ── View transitions ── */
+    .view { animation: fadeUp .25s ease both; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Page title row ── */
+    .page-title {
+      margin-bottom: 2rem;
+    }
+    .page-title h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; line-height: 1.2; margin-bottom: .35rem;
+    }
+    .page-title h1 span { color: var(--accent); }
+    .page-title p { color: var(--ink-2); font-weight: 300; font-size: .93rem; }
+
+    /* ── Stufen grid ── */
+    .stufen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.1rem;
+    }
+    .stufen-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); box-shadow: var(--shadow);
+      padding: 1.6rem 1.5rem;
+      cursor: pointer; transition: transform .18s, box-shadow .18s, border-color .18s;
+      display: flex; flex-direction: column; gap: .5rem;
+    }
+    .stufen-card:hover {
+      transform: translateY(-3px); box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+    .stufen-card .stufen-num {
+      font-family: 'DM Mono', monospace; font-size: 2.4rem;
+      font-weight: 500; color: var(--accent); line-height: 1;
+    }
+    .stufen-card .stufen-label {
+      font-size: .82rem; color: var(--ink-2); text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .stufen-card .stufen-meta {
+      margin-top: .5rem; display: flex; gap: .5rem; flex-wrap: wrap;
+    }
+    .stufen-card .badge {
+      font-size: .72rem; padding: .15rem .6rem; border-radius: 99px;
+      background: var(--accent-2); color: var(--accent); font-weight: 500;
+    }
+    .stufen-card .arrow {
+      margin-top: auto; align-self: flex-end;
+      color: var(--accent); font-size: 1.1rem; opacity: 0;
+      transition: opacity .18s, transform .18s;
+    }
+    .stufen-card:hover .arrow { opacity: 1; transform: translateX(4px); }
+
+    /* ── Themen grid ── */
+    .themen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.1rem;
+    }
+    .themen-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); box-shadow: var(--shadow);
+      padding: 1.4rem 1.5rem;
+      cursor: pointer; transition: transform .18s, box-shadow .18s, border-color .18s;
+    }
+    .themen-card:hover {
+      transform: translateY(-3px); box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+    .themen-card .thema-icon {
+      width: 38px; height: 38px; border-radius: var(--r);
+      background: var(--accent-2); display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem; margin-bottom: .9rem;
+    }
+    .themen-card h3 { font-size: .96rem; font-weight: 600; margin-bottom: .3rem; }
+    .themen-card p { font-size: .82rem; color: var(--ink-2); font-weight: 300; line-height: 1.5; }
+    .themen-card .thema-footer {
+      margin-top: .9rem; display: flex; justify-content: space-between;
+      align-items: center;
+    }
+    .themen-card .count { font-size: .75rem; color: var(--ink-2); font-family: 'DM Mono', monospace; }
+    .themen-card .arrow {
+      color: var(--accent); font-size: 1rem; opacity: 0;
+      transition: opacity .18s, transform .18s;
+    }
+    .themen-card:hover .arrow { opacity: 1; transform: translateX(4px); }
+
+    /* ── Material view ── */
+    .material-header {
       display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 2rem; margin-bottom: 3rem; padding-bottom: 2.5rem;
+      gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 1.5rem;
       border-bottom: 1px solid var(--border);
     }
-    .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; line-height: 1.15; margin-bottom: .75rem; }
-    .hero-text h1 span { color: var(--accent); }
-    .hero-text p { color: var(--ink-2); max-width: 500px; font-weight: 300; font-size: .95rem; }
-    .hero-stats { display: flex; gap: 1.5rem; flex-shrink: 0; }
-    .stat { text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: .9rem 1.2rem; min-width: 90px; }
-    .stat-num { font-family: 'DM Mono', monospace; font-size: 1.8rem; font-weight: 500; color: var(--accent); line-height: 1; }
-    .stat-label { font-size: .72rem; color: var(--ink-2); text-transform: uppercase; letter-spacing: .06em; margin-top: .3rem; }
+    .material-header h2 {
+      font-family: 'Playfair Display', serif; font-size: 1.7rem; margin-bottom: .3rem;
+    }
+    .material-header p { color: var(--ink-2); font-weight: 300; font-size: .9rem; }
+    .material-stats { display: flex; gap: .75rem; flex-shrink: 0; }
+    .mini-stat {
+      text-align: center; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--r);
+      padding: .6rem .9rem; min-width: 70px;
+    }
+    .mini-stat-num { font-family: 'DM Mono', monospace; font-size: 1.4rem; color: var(--accent); line-height: 1; }
+    .mini-stat-label { font-size: .68rem; color: var(--ink-2); text-transform: uppercase; letter-spacing: .06em; margin-top: .2rem; }
 
-    /* Filter bar */
-    .filter-bar { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.75rem; align-items: center; }
-    .filter-bar > span { font-size: .78rem; color: var(--ink-2); letter-spacing: .04em; text-transform: uppercase; margin-right: .5rem; }
+    /* Filter + Search bar */
+    .filter-bar {
+      display: flex; gap: .5rem; flex-wrap: wrap;
+      margin-bottom: 1.5rem; align-items: center;
+    }
     .filter-btn {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 99px; padding: .3rem .85rem; font-size: .8rem;
-      font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .15s; color: var(--ink-2);
+      border-radius: 99px; padding: .28rem .8rem; font-size: .78rem;
+      font-family: 'DM Sans', sans-serif; cursor: pointer;
+      transition: all .15s; color: var(--ink-2);
     }
     .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
     .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-
-    /* Search */
     .search-wrap { position: relative; margin-left: auto; }
     .search-wrap input {
       border: 1px solid var(--border); border-radius: 99px;
-      padding: .3rem 1rem .3rem 2.1rem; font-family: 'DM Sans', sans-serif;
-      font-size: .82rem; background: var(--surface); color: var(--ink);
-      outline: none; width: 200px; transition: border-color .15s;
+      padding: .28rem 1rem .28rem 2rem; font-family: 'DM Sans', sans-serif;
+      font-size: .8rem; background: var(--surface); color: var(--ink);
+      outline: none; width: 190px; transition: border-color .15s;
     }
     .search-wrap input:focus { border-color: var(--accent); }
-    .search-wrap svg { position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: var(--ink-2); pointer-events: none; }
+    .search-wrap svg { position: absolute; left: .65rem; top: 50%; transform: translateY(-50%); color: var(--ink-2); pointer-events: none; }
 
-    /* Cards */
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
+    /* ── Material cards ── */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.1rem; }
     .card {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--r); box-shadow: var(--shadow);
       display: flex; flex-direction: column;
       transition: transform .18s, box-shadow .18s; overflow: hidden;
-      animation: fadeUp .3s ease both;
+      animation: fadeUp .25s ease both;
     }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,.1); }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-
-    .card-header { padding: 1.1rem 1.25rem .8rem; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: .5rem; }
-    .card-type-icon { width: 34px; height: 34px; border-radius: var(--r); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
+    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .card-header { padding: 1rem 1.15rem .75rem; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: .6rem; }
+    .card-icon { width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: .95rem; }
     .icon-pdf  { background: #FEE2E2; }
     .icon-quiz { background: #EDE9FE; }
     .icon-link { background: #DCFCE7; }
-    .card-meta { flex: 1; }
-    .card-meta h3 { font-size: .92rem; font-weight: 600; line-height: 1.3; margin-bottom: .25rem; }
-    .card-meta .topic { font-size: .75rem; color: var(--ink-2); font-family: 'DM Mono', monospace; letter-spacing: .04em; }
-    .card-body { padding: .85rem 1.25rem; flex: 1; }
-    .card-body p { font-size: .85rem; color: var(--ink-2); font-weight: 300; line-height: 1.55; }
-    .card-footer { padding: .75rem 1.25rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
-    .tags { display: flex; gap: .35rem; flex-wrap: wrap; }
-    .tag { font-size: .7rem; padding: .15rem .55rem; border-radius: 99px; font-weight: 500; }
-    .tag-klasse { background: var(--tag-1); color: var(--tag-1-ink); }
-    .tag-thema  { background: var(--tag-3); color: var(--tag-3-ink); }
+    .card-meta h3 { font-size: .9rem; font-weight: 600; line-height: 1.3; }
+    .card-body { padding: .8rem 1.15rem; flex: 1; }
+    .card-body p { font-size: .83rem; color: var(--ink-2); font-weight: 300; line-height: 1.55; }
+    .card-footer { padding: .7rem 1.15rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+    .tags { display: flex; gap: .3rem; flex-wrap: wrap; }
+    .tag { font-size: .68rem; padding: .12rem .5rem; border-radius: 99px; font-weight: 500; }
     .tag-schwer { background: var(--tag-4); color: var(--tag-4-ink); }
     .tag-leicht { background: var(--tag-2); color: var(--tag-2-ink); }
+    .tag-mittel { background: var(--tag-1); color: var(--tag-1-ink); }
 
     /* Buttons */
     .btn {
-      font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600;
-      padding: .35rem .8rem; border-radius: var(--r); cursor: pointer; border: none;
-      transition: all .15s; text-decoration: none; display: inline-flex; align-items: center; gap: .3rem;
+      font-family: 'DM Sans', sans-serif; font-size: .77rem; font-weight: 600;
+      padding: .32rem .75rem; border-radius: 6px; cursor: pointer; border: none;
+      transition: all .15s; text-decoration: none;
+      display: inline-flex; align-items: center; gap: .3rem;
     }
     .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { background: #1e40af; }
+    .btn-primary:hover { background: var(--accent-h); }
     .btn-ghost { background: transparent; color: var(--ink-2); border: 1px solid var(--border); }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .btn[disabled] { opacity: .4; cursor: not-allowed; }
 
-    /* States */
+    /* ── State boxes ── */
     .state-box { grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: var(--ink-2); }
     .state-box p { font-size: .9rem; margin-bottom: .4rem; }
-    .state-box .hint { font-size: .78rem; font-family: 'DM Mono', monospace; color: #9ca3af; }
-    .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 1rem; }
+    .state-box .hint { font-size: .78rem; font-family: 'DM Mono', monospace; color: #aaa; }
+    .spinner { width: 34px; height: 34px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 1rem; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* Modal */
+    /* ── Modal ── */
     .modal-overlay {
-      position: fixed; inset: 0; background: rgba(26,25,23,.55);
+      position: fixed; inset: 0; background: rgba(26,25,23,.5);
       backdrop-filter: blur(3px); z-index: 200;
       display: flex; align-items: center; justify-content: center; padding: 1rem;
       opacity: 0; pointer-events: none; transition: opacity .2s;
     }
     .modal-overlay.open { opacity: 1; pointer-events: all; }
     .modal {
-      background: var(--surface); border-radius: 10px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.2); width: 100%;
-      max-width: 600px; max-height: 90vh; overflow-y: auto;
-      transform: translateY(16px); transition: transform .2s;
+      background: var(--surface); border-radius: 12px;
+      box-shadow: 0 24px 64px rgba(0,0,0,.18); width: 100%;
+      max-width: 580px; max-height: 90vh; overflow-y: auto;
+      transform: translateY(14px); transition: transform .2s;
     }
     .modal-overlay.open .modal { transform: translateY(0); }
-    .modal-top { padding: 1.5rem 1.5rem 1rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
-    .modal-top h2 { font-family: 'Playfair Display', serif; font-size: 1.25rem; }
-    .modal-close { background: none; border: none; cursor: pointer; color: var(--ink-2); font-size: 1.2rem; padding: .2rem; line-height: 1; transition: color .15s; }
+    .modal-top {
+      padding: 1.4rem 1.5rem 1rem; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; position: sticky; top: 0; background: var(--surface); z-index: 1;
+    }
+    .modal-top h2 { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+    .modal-close { background: none; border: none; cursor: pointer; color: var(--ink-2); font-size: 1.2rem; padding: .15rem; line-height: 1; transition: color .15s; }
     .modal-close:hover { color: var(--ink); }
-    .modal-body { padding: 1.25rem 1.5rem 1.5rem; }
+    .modal-body { padding: 1.2rem 1.5rem 1.5rem; }
 
     /* Quiz */
-    .quiz-q { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 1rem; margin-bottom: .75rem; }
-    .quiz-q > p { font-weight: 600; margin-bottom: .6rem; font-size: .9rem; }
-    .quiz-options { display: flex; flex-direction: column; gap: .4rem; }
+    .quiz-q { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: .95rem; margin-bottom: .7rem; }
+    .quiz-q > p { font-weight: 600; margin-bottom: .55rem; font-size: .88rem; }
+    .quiz-options { display: flex; flex-direction: column; gap: .35rem; }
     .quiz-option {
-      display: flex; align-items: center; gap: .6rem;
+      display: flex; align-items: center; gap: .55rem;
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--r); padding: .5rem .75rem;
-      cursor: pointer; font-size: .85rem; transition: border-color .15s, background .15s;
+      border-radius: 6px; padding: .45rem .7rem;
+      cursor: pointer; font-size: .84rem; transition: border-color .15s, background .15s; user-select: none;
     }
     .quiz-option:hover { border-color: var(--accent); background: var(--accent-2); }
     .quiz-option.correct { border-color: #16a34a; background: #f0fdf4; color: #15803d; }
     .quiz-option.wrong   { border-color: #dc2626; background: #fef2f2; color: #b91c1c; }
-    .quiz-option input[type="radio"] { accent-color: var(--accent); }
+    .quiz-option input[type="radio"] { accent-color: var(--accent); flex-shrink: 0; }
+    #quiz-result { display:none; text-align:center; padding:.9rem; font-size:.96rem; font-weight:600; border-radius:var(--r); margin-top:.4rem; }
 
-    /* Toast */
-    .toast {
-      position: fixed; bottom: 1.5rem; right: 1.5rem;
-      background: var(--ink); color: #fff; padding: .65rem 1.1rem;
-      border-radius: var(--r); font-size: .83rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,.2);
-      opacity: 0; transform: translateY(8px);
-      transition: opacity .2s, transform .2s; pointer-events: none; z-index: 300;
-    }
-    .toast.show { opacity: 1; transform: translateY(0); }
+    footer { text-align: center; padding: 2rem; color: var(--ink-2); font-size: .73rem; border-top: 1px solid var(--border); letter-spacing: .04em; }
 
-    footer { text-align: center; padding: 2rem; color: var(--ink-2); font-size: .75rem; border-top: 1px solid var(--border); letter-spacing: .04em; }
-
-    @media (max-width: 640px) {
-      .hero { flex-direction: column; }
-      .hero-stats { gap: .75rem; }
-      nav { display: none; }
+    @media (max-width: 600px) {
+      .material-header { flex-direction: column; }
+      .material-stats { flex-direction: row; }
+      .header-brand .name { display: none; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="header-title">
+  <div class="header-brand" onclick="goHome()">
     <span class="subject">Informatik</span>
     <span class="name">Herr Neufeld</span>
   </div>
-  <nav>
-    <button class="active" onclick="setFilter('alle')">Alle</button>
-    <button onclick="setFilter('pdf')">Arbeitsblätter</button>
-    <button onclick="setFilter('quiz')">Quizze</button>
-    <button onclick="setFilter('link')">Links</button>
-  </nav>
+  <nav class="breadcrumb" id="breadcrumb"></nav>
 </header>
 
-<main>
-  <div class="hero">
-    <div class="hero-text">
-      <h1>Lernmaterial<br><span>Informatik</span></h1>
-      <p>Arbeitsblätter, interaktive Aufgaben und kuratierte Links für den Informatikunterricht am Gymnasium.</p>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-num" id="count-pdf">–</div><div class="stat-label">Blätter</div></div>
-      <div class="stat"><div class="stat-num" id="count-quiz">–</div><div class="stat-label">Quizze</div></div>
-      <div class="stat"><div class="stat-num" id="count-link">–</div><div class="stat-label">Links</div></div>
-    </div>
-  </div>
-
-  <div class="filter-bar">
-    <span>Filter:</span>
-    <button class="filter-btn active" onclick="setFilter('alle')" data-filter="alle">Alle</button>
-    <button class="filter-btn" onclick="setFilter('pdf')"  data-filter="pdf">📄 Arbeitsblätter</button>
-    <button class="filter-btn" onclick="setFilter('quiz')" data-filter="quiz">🧩 Quizze</button>
-    <button class="filter-btn" onclick="setFilter('link')" data-filter="link">🔗 Links</button>
-    <div class="search-wrap">
-      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-      </svg>
-      <input type="text" id="search" placeholder="Suchen …" oninput="renderCards()" />
-    </div>
-  </div>
-
-  <div class="card-grid" id="card-grid">
-    <div class="state-box">
-      <div class="spinner"></div>
-      <p>Materialien werden geladen …</p>
-    </div>
-  </div>
+<main id="main">
+  <div class="state-box"><div class="spinner"></div><p>Wird geladen …</p></div>
 </main>
 
 <footer>Informatik · Herr Neufeld · <span id="year"></span></footer>
@@ -249,173 +308,346 @@
 <div class="modal-overlay" id="quiz-modal" onclick="closeOnOverlay(event,'quiz-modal')">
   <div class="modal">
     <div class="modal-top">
-      <h2 id="quiz-modal-title">Quiz</h2>
+      <h2 id="quiz-title">Quiz</h2>
       <button class="modal-close" onclick="closeModal('quiz-modal')">✕</button>
     </div>
-    <div class="modal-body" id="quiz-modal-body"></div>
+    <div class="modal-body" id="quiz-body"></div>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
-
 <script>
-  let allData = [];
-  let activeFilter = 'alle';
-  let answered = {};
+/* ════════════════════════════════════════════
+   State
+════════════════════════════════════════════ */
+let DATA        = [];           // full data.json
+let currentView = 'home';       // 'home' | 'themen' | 'material'
+let activeStufe = null;         // stufe object
+let activeThema = null;         // thema object
+let matFilter   = 'alle';
+let answered    = {};
 
-  document.getElementById('year').textContent = new Date().getFullYear();
-  loadData();
+/* ════════════════════════════════════════════
+   Boot
+════════════════════════════════════════════ */
+document.getElementById('year').textContent = new Date().getFullYear();
+fetchData();
 
-  async function loadData() {
-    try {
-      const res = await fetch('data.json?v=' + Date.now());
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      allData = await res.json();
-      updateStats();
-      renderCards();
-    } catch (err) {
-      document.getElementById('card-grid').innerHTML = `
-        <div class="state-box">
-          <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0
-                 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898
-                 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
-          </svg>
-          <p>Fehler beim Laden der Daten.</p>
-          <p class="hint">Stelle sicher, dass <code>data.json</code> im selben Ordner liegt und gültiges JSON enthält.</p>
-          <p class="hint" style="margin-top:.3rem">${esc(err.message)}</p>
-        </div>`;
-    }
-  }
-
-  function updateStats() {
-    document.getElementById('count-pdf').textContent  = allData.filter(d => d.type === 'pdf').length;
-    document.getElementById('count-quiz').textContent = allData.filter(d => d.type === 'quiz').length;
-    document.getElementById('count-link').textContent = allData.filter(d => d.type === 'link').length;
-  }
-
-  function setFilter(f) {
-    activeFilter = f;
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
-    const labels = { alle:'Alle', pdf:'Arbeitsblätter', quiz:'Quizze', link:'Links' };
-    document.querySelectorAll('nav button').forEach(b => b.classList.toggle('active', b.textContent.trim() === labels[f]));
-    renderCards();
-  }
-
-  function renderCards() {
-    const q = document.getElementById('search').value.toLowerCase();
-    const filtered = allData.filter(d => {
-      const matchFilter = activeFilter === 'alle' || d.type === activeFilter;
-      const matchSearch = !q || [d.title, d.topic, d.desc, d.klasse].some(s => (s||'').toLowerCase().includes(q));
-      return matchFilter && matchSearch;
-    });
-
-    const grid = document.getElementById('card-grid');
-    if (!filtered.length) {
-      grid.innerHTML = `<div class="state-box">
-        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-            d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        </svg>
-        <p>Keine Einträge gefunden.</p>
+async function fetchData() {
+  try {
+    const res = await fetch('data.json?v=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    DATA = await res.json();
+    renderHome();
+  } catch (err) {
+    document.getElementById('main').innerHTML = `
+      <div class="state-box">
+        <p>⚠️ Fehler beim Laden der Daten.</p>
+        <p class="hint">${esc(err.message)}</p>
+        <p class="hint">Stelle sicher, dass <code>data.json</code> im selben Verzeichnis liegt.</p>
       </div>`;
-      return;
-    }
-
-    grid.innerHTML = filtered.map((d, i) => cardHTML(d, i)).join('');
   }
+}
 
-  function cardHTML(d, i) {
-    const icons     = { pdf:'📄', quiz:'🧩', link:'🔗' };
-    const iconClass = { pdf:'icon-pdf', quiz:'icon-quiz', link:'icon-link' };
-    const tagLevel  = d.level  ? `<span class="tag ${d.level==='leicht'?'tag-leicht':'tag-schwer'}">${cap(d.level)}</span>` : '';
-    const tagKlasse = d.klasse ? `<span class="tag tag-klasse">${esc(d.klasse)}</span>` : '';
-    const tagTopic  = d.topic  ? `<span class="tag tag-thema">${esc(d.topic)}</span>` : '';
+/* ════════════════════════════════════════════
+   Views
+════════════════════════════════════════════ */
 
-    const action = d.type === 'quiz'
-      ? `<button class="btn btn-primary" onclick="openQuiz(${d.id})">Quiz starten</button>`
-      : d.url && d.url !== '#'
-        ? `<a class="btn btn-primary" href="${esc(d.url)}" target="_blank" rel="noopener">Öffnen ↗</a>`
-        : `<button class="btn btn-ghost" disabled>Kein Link</button>`;
+/* ── Home: Jahrgangsstufen ── */
+function renderHome() {
+  currentView = 'home'; activeStufe = null; activeThema = null;
+  updateBreadcrumb();
 
+  const cards = DATA.map(s => {
+    const totalMat = s.themen.reduce((n, t) => n + t.material.length, 0);
+    const badges = s.themen.slice(0,3).map(t => `<span class="badge">${esc(t.titel)}</span>`).join('');
     return `
-      <div class="card" style="animation-delay:${i*40}ms">
-        <div class="card-header">
-          <div class="card-type-icon ${iconClass[d.type]}">${icons[d.type]}</div>
-          <div class="card-meta">
-            <h3>${esc(d.title)}</h3>
-            <div class="topic">${esc(d.topic||'')}</div>
-          </div>
+      <div class="stufen-card view" onclick="renderThemen('${esc(s.stufe)}')">
+        <div class="stufen-num">${esc(s.stufe)}</div>
+        <div class="stufen-label">${esc(s.label)}</div>
+        <div class="stufen-meta">${badges}</div>
+        <div style="margin-top:.6rem;font-size:.76rem;color:var(--ink-2);font-family:'DM Mono',monospace;">
+          ${s.themen.length} Thema${s.themen.length !== 1 ? 'en' : ''} · ${totalMat} Material${totalMat !== 1 ? 'ien' : ''}
         </div>
-        <div class="card-body"><p>${esc(d.desc||'')}</p></div>
-        <div class="card-footer">
-          <div class="tags">${tagKlasse}${tagTopic}${tagLevel}</div>
-          <div>${action}</div>
+        <div class="arrow">→</div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('main').innerHTML = `
+    <div class="view">
+      <div class="page-title">
+        <h1>Willkommen im<br><span>Informatik-Kurs</span></h1>
+        <p>Wähle deine Jahrgangsstufe, um zu deinen Themen und Materialien zu gelangen.</p>
+      </div>
+      <div class="stufen-grid">${cards}</div>
+    </div>`;
+}
+
+/* ── Themen einer Stufe ── */
+function renderThemen(stufeId) {
+  activeStufe = DATA.find(s => s.stufe === stufeId);
+  if (!activeStufe) return;
+  currentView = 'themen'; activeThema = null;
+  updateBreadcrumb();
+
+  const themaIcons = ['💡','🔢','🗄️','🔗','⚙️','🧩','📐','🌐','🔒','📊'];
+  const cards = activeStufe.themen.map((t, i) => {
+    const counts = countMaterial(t.material);
+    const badges = [
+      counts.pdf  ? `${counts.pdf} Blatt`   : '',
+      counts.quiz ? `${counts.quiz} Quiz`    : '',
+      counts.link ? `${counts.link} Link`    : '',
+    ].filter(Boolean).join(' · ');
+    return `
+      <div class="themen-card view" onclick="renderMaterial('${esc(activeStufe.stufe)}','${esc(t.id)}')" style="animation-delay:${i*40}ms">
+        <div class="thema-icon">${themaIcons[i % themaIcons.length]}</div>
+        <h3>${esc(t.titel)}</h3>
+        <p>${esc(t.beschreibung || '')}</p>
+        <div class="thema-footer">
+          <span class="count">${badges}</span>
+          <span class="arrow">→</span>
         </div>
       </div>`;
+  }).join('');
+
+  document.getElementById('main').innerHTML = `
+    <div class="view">
+      <div class="page-title">
+        <h1><span>${esc(activeStufe.label)}</span></h1>
+        <p>Wähle ein Thema, um das zugehörige Material zu sehen.</p>
+      </div>
+      <div class="themen-grid">${cards}</div>
+    </div>`;
+}
+
+/* ── Material eines Themas ── */
+function renderMaterial(stufeId, themaId) {
+  activeStufe = DATA.find(s => s.stufe === stufeId);
+  activeThema = activeStufe?.themen.find(t => t.id === themaId);
+  if (!activeThema) return;
+  currentView = 'material'; matFilter = 'alle';
+  updateBreadcrumb();
+  buildMaterialView();
+}
+
+function buildMaterialView() {
+  const mat    = activeThema.material;
+  const counts = countMaterial(mat);
+  const q      = (document.getElementById('mat-search')?.value || '').toLowerCase();
+
+  const filtered = mat.filter(d => {
+    const mf = matFilter === 'alle' || d.type === matFilter;
+    const ms = !q || [d.title, d.desc].some(s => (s||'').toLowerCase().includes(q));
+    return mf && ms;
+  });
+
+  const statsHTML = `
+    <div class="material-stats">
+      ${counts.pdf  ? miniStat(counts.pdf,  '📄','Blätter') : ''}
+      ${counts.quiz ? miniStat(counts.quiz, '🧩','Quizze')  : ''}
+      ${counts.link ? miniStat(counts.link, '🔗','Links')   : ''}
+    </div>`;
+
+  const filterHTML = `
+    <div class="filter-bar" id="filter-bar">
+      <button class="filter-btn ${matFilter==='alle'?'active':''}"  onclick="setMatFilter('alle')">Alle</button>
+      ${counts.pdf  ? `<button class="filter-btn ${matFilter==='pdf'?'active':''}"  onclick="setMatFilter('pdf')">📄 Arbeitsblätter</button>` : ''}
+      ${counts.quiz ? `<button class="filter-btn ${matFilter==='quiz'?'active':''}" onclick="setMatFilter('quiz')">🧩 Quizze</button>` : ''}
+      ${counts.link ? `<button class="filter-btn ${matFilter==='link'?'active':''}" onclick="setMatFilter('link')">🔗 Links</button>` : ''}
+      <div class="search-wrap">
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <input type="text" id="mat-search" placeholder="Suchen …" oninput="rebuildCards()" value="${esc(q)}" />
+      </div>
+    </div>`;
+
+  const cardsHTML = filtered.length
+    ? `<div class="card-grid">${filtered.map((d,i) => cardHTML(d,i)).join('')}</div>`
+    : `<div class="card-grid"><div class="state-box"><p>Keine Materialien gefunden.</p></div></div>`;
+
+  document.getElementById('main').innerHTML = `
+    <div class="view">
+      <div class="material-header">
+        <div>
+          <h2>${esc(activeThema.titel)}</h2>
+          <p>${esc(activeThema.beschreibung||'')}</p>
+        </div>
+        ${statsHTML}
+      </div>
+      ${filterHTML}
+      ${cardsHTML}
+    </div>`;
+}
+
+function rebuildCards() {
+  const q = (document.getElementById('mat-search')?.value || '').toLowerCase();
+  const mat = activeThema.material;
+  const filtered = mat.filter(d => {
+    const mf = matFilter === 'alle' || d.type === matFilter;
+    const ms = !q || [d.title, d.desc].some(s => (s||'').toLowerCase().includes(q));
+    return mf && ms;
+  });
+  const grid = document.querySelector('.card-grid');
+  if (!grid) return;
+  grid.innerHTML = filtered.length
+    ? filtered.map((d,i) => cardHTML(d,i)).join('')
+    : `<div class="state-box"><p>Keine Materialien gefunden.</p></div>`;
+}
+
+function setMatFilter(f) {
+  matFilter = f;
+  buildMaterialView();
+  // restore search value after rebuild
+}
+
+/* ════════════════════════════════════════════
+   Card HTML
+════════════════════════════════════════════ */
+function cardHTML(d, i) {
+  const icons     = { pdf:'📄', quiz:'🧩', link:'🔗' };
+  const iconClass = { pdf:'icon-pdf', quiz:'icon-quiz', link:'icon-link' };
+  const tagLevel  = d.level ? `<span class="tag tag-${d.level}">${cap(d.level)}</span>` : '';
+
+  const action = d.type === 'quiz'
+    ? `<button class="btn btn-primary" onclick="openQuiz(${d.id})">Quiz starten</button>`
+    : d.url && d.url !== '#'
+      ? `<a class="btn btn-primary" href="${esc(d.url)}" target="_blank" rel="noopener">Öffnen ↗</a>`
+      : `<button class="btn btn-ghost" disabled>Kein Link</button>`;
+
+  return `
+    <div class="card" style="animation-delay:${i*40}ms">
+      <div class="card-header">
+        <div class="card-icon ${iconClass[d.type]}">${icons[d.type]}</div>
+        <div class="card-meta"><h3>${esc(d.title)}</h3></div>
+      </div>
+      <div class="card-body"><p>${esc(d.desc||'')}</p></div>
+      <div class="card-footer">
+        <div class="tags">${tagLevel}</div>
+        <div>${action}</div>
+      </div>
+    </div>`;
+}
+
+function miniStat(n, icon, label) {
+  return `<div class="mini-stat">
+    <div class="mini-stat-num">${icon} ${n}</div>
+    <div class="mini-stat-label">${label}</div>
+  </div>`;
+}
+
+/* ════════════════════════════════════════════
+   Breadcrumb
+════════════════════════════════════════════ */
+function updateBreadcrumb() {
+  const bc = document.getElementById('breadcrumb');
+  const parts = [];
+
+  if (currentView === 'home') {
+    bc.innerHTML = '';
+    return;
+  }
+  parts.push(`<span class="crumb" onclick="goHome()">Startseite</span>`);
+
+  if (currentView === 'themen' && activeStufe) {
+    parts.push(`<span class="sep">›</span>`);
+    parts.push(`<span class="crumb active">${esc(activeStufe.label)}</span>`);
   }
 
-  /* ── Quiz player ── */
-  function openQuiz(id) {
-    const card = allData.find(d => d.id === id);
-    if (!card || !card.questions) return;
-    answered = {};
-    document.getElementById('quiz-modal-title').textContent = card.title;
-    const body = document.getElementById('quiz-modal-body');
-    body.innerHTML =
-      card.questions.map((q, qi) => `
-        <div class="quiz-q" id="qq-${qi}">
-          <p>${qi+1}. ${esc(q.q)}</p>
-          <div class="quiz-options">
-            ${q.options.map((opt, oi) => `
-              <label class="quiz-option" id="qo-${qi}-${oi}" onclick="pickAnswer(${qi},${oi})">
-                <input type="radio" name="q${qi}" value="${oi}" style="pointer-events:none" />
-                ${esc(opt)}
-              </label>`).join('')}
-          </div>
-        </div>`).join('') +
-      `<div id="quiz-result" style="display:none;text-align:center;padding:1rem;font-size:1rem;font-weight:600;border-radius:var(--r);margin-top:.5rem;"></div>
-       <div style="text-align:center;margin-top:1rem;">
-         <button class="btn btn-primary" onclick="submitQuiz(${card.id})">Auswerten</button>
-       </div>`;
-    openModal('quiz-modal');
+  if (currentView === 'material' && activeStufe && activeThema) {
+    parts.push(`<span class="sep">›</span>`);
+    parts.push(`<span class="crumb" onclick="renderThemen('${esc(activeStufe.stufe)}')">${esc(activeStufe.label)}</span>`);
+    parts.push(`<span class="sep">›</span>`);
+    parts.push(`<span class="crumb active">${esc(activeThema.titel)}</span>`);
   }
 
-  function pickAnswer(qi, oi) { answered[qi] = oi; }
+  bc.innerHTML = parts.join('');
+}
 
-  function submitQuiz(cardId) {
-    const card = allData.find(d => d.id === cardId);
-    if (!card) return;
-    let correct = 0;
-    card.questions.forEach((q, qi) => {
-      const chosen = answered[qi];
-      q.options.forEach((_, oi) => {
-        const el = document.getElementById(`qo-${qi}-${oi}`);
-        if (!el) return;
-        el.classList.remove('correct','wrong');
-        if (oi === q.correct) el.classList.add('correct');
-        else if (oi === chosen && chosen !== q.correct) el.classList.add('wrong');
-      });
-      if (chosen === q.correct) correct++;
+function goHome() { renderHome(); }
+
+/* ════════════════════════════════════════════
+   Quiz
+════════════════════════════════════════════ */
+function openQuiz(id) {
+  // Search across all material
+  let card = null;
+  for (const s of DATA) for (const t of s.themen) {
+    card = t.material.find(m => m.id === id);
+    if (card) break;
+  }
+  if (!card || !card.questions) return;
+  answered = {};
+
+  document.getElementById('quiz-title').textContent = card.title;
+  const body = document.getElementById('quiz-body');
+  body.innerHTML =
+    card.questions.map((q, qi) => `
+      <div class="quiz-q">
+        <p>${qi+1}. ${esc(q.q)}</p>
+        <div class="quiz-options">
+          ${q.options.map((opt, oi) => `
+            <label class="quiz-option" id="qo-${qi}-${oi}" onclick="pickAnswer(${qi},${oi})">
+              <input type="radio" name="q${qi}" style="pointer-events:none" />
+              ${esc(opt)}
+            </label>`).join('')}
+        </div>
+      </div>`).join('') +
+    `<div id="quiz-result"></div>
+     <div style="text-align:center;margin-top:1rem;">
+       <button class="btn btn-primary" onclick="submitQuiz(${card.id})">Auswerten</button>
+     </div>`;
+  openModal('quiz-modal');
+}
+
+function pickAnswer(qi, oi) { answered[qi] = oi; }
+
+function submitQuiz(id) {
+  let card = null;
+  for (const s of DATA) for (const t of s.themen) {
+    card = t.material.find(m => m.id === id);
+    if (card) break;
+  }
+  if (!card) return;
+  let correct = 0;
+  card.questions.forEach((q, qi) => {
+    const chosen = answered[qi];
+    q.options.forEach((_, oi) => {
+      const el = document.getElementById(`qo-${qi}-${oi}`);
+      if (!el) return;
+      el.classList.remove('correct','wrong');
+      if (oi === q.correct) el.classList.add('correct');
+      else if (oi === chosen && chosen !== q.correct) el.classList.add('wrong');
     });
-    const total = card.questions.length;
-    const pct   = Math.round(correct / total * 100);
-    const res   = document.getElementById('quiz-result');
-    const emoji = pct >= 80 ? '🎉' : pct >= 50 ? '👍' : '📚';
-    res.style.display     = 'block';
-    res.style.background  = pct >= 80 ? '#f0fdf4' : pct >= 50 ? '#fefce8' : '#fef2f2';
-    res.innerHTML = `${emoji} ${correct} von ${total} richtig – ${pct}%`;
-  }
+    if (chosen === q.correct) correct++;
+  });
+  const total = card.questions.length;
+  const pct   = Math.round(correct / total * 100);
+  const emoji = pct >= 80 ? '🎉' : pct >= 50 ? '👍' : '📚';
+  const res   = document.getElementById('quiz-result');
+  res.style.display    = 'block';
+  res.style.background = pct >= 80 ? '#f0fdf4' : pct >= 50 ? '#fefce8' : '#fef2f2';
+  res.textContent      = `${emoji} ${correct} von ${total} richtig – ${pct}%`;
+}
 
-  /* ── Modal helpers ── */
-  function openModal(id)             { document.getElementById(id).classList.add('open'); }
-  function closeModal(id)            { document.getElementById(id).classList.remove('open'); }
-  function closeOnOverlay(e, id)     { if (e.target.id === id) closeModal(id); }
+/* ════════════════════════════════════════════
+   Helpers
+════════════════════════════════════════════ */
+function countMaterial(mat) {
+  return {
+    pdf:  mat.filter(m => m.type === 'pdf').length,
+    quiz: mat.filter(m => m.type === 'quiz').length,
+    link: mat.filter(m => m.type === 'link').length,
+  };
+}
 
-  /* ── Helpers ── */
-  function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-  function cap(s) { return s ? s[0].toUpperCase() + s.slice(1) : ''; }
+function openModal(id)         { document.getElementById(id).classList.add('open'); }
+function closeModal(id)        { document.getElementById(id).classList.remove('open'); }
+function closeOnOverlay(e, id) { if (e.target.id === id) closeModal(id); }
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function cap(s) { return s ? s[0].toUpperCase() + s.slice(1) : ''; }
 </script>
 </body>
 </html>

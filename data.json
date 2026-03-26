@@ -1,74 +1,235 @@
 [
   {
-    "id": 1,
-    "type": "pdf",
-    "title": "Variablen & Datentypen",
-    "topic": "Python Grundlagen",
-    "desc": "Einführung in Variablen, einfache Datentypen und Zuweisungen in Python.",
-    "klasse": "10b",
-    "level": "leicht",
-    "url": "#",
-    "date": "2025-03-10"
-  },
-  {
-    "id": 2,
-    "type": "quiz",
-    "title": "Quiz: Boolesche Algebra",
-    "topic": "Logik & Schaltungen",
-    "desc": "Überprüfe dein Wissen zu AND, OR, NOT und de Morgan.",
-    "klasse": "11",
-    "level": "mittel",
-    "url": "",
-    "date": "2025-03-15",
-    "questions": [
+    "stufe": "10",
+    "label": "Jahrgangsstufe 10",
+    "themen": [
       {
-        "q": "Was ergibt NOT (A AND B)?",
-        "options": ["A AND B", "NOT A OR NOT B", "A OR B", "NOT A AND NOT B"],
-        "correct": 1
+        "id": "python-grundlagen",
+        "titel": "Python Grundlagen",
+        "beschreibung": "Einstieg in die Programmierung mit Python: Variablen, Datentypen, Ein- und Ausgabe.",
+        "material": [
+          {
+            "id": 101,
+            "type": "pdf",
+            "title": "Variablen & Datentypen",
+            "desc": "Einführung in Variablen, einfache Datentypen und Zuweisungen in Python.",
+            "level": "leicht",
+            "url": "#",
+            "date": "2025-03-10"
+          },
+          {
+            "id": 102,
+            "type": "pdf",
+            "title": "Schleifen & Iteration",
+            "desc": "For- und While-Schleifen mit Übungsaufgaben unterschiedlichen Schwierigkeitsgrades.",
+            "level": "mittel",
+            "url": "#",
+            "date": "2025-03-20"
+          },
+          {
+            "id": 103,
+            "type": "link",
+            "title": "CS50: Introduction to Programming",
+            "desc": "Der kostenlose Harvard-Kurs CS50 – ideal zur Vertiefung und als Ergänzung zum Unterricht.",
+            "level": "",
+            "url": "https://cs50.harvard.edu",
+            "date": "2025-03-18"
+          },
+          {
+            "id": 104,
+            "type": "quiz",
+            "title": "Quiz: Python Basics",
+            "desc": "Teste dein Wissen zu Variablen, Datentypen und einfachen Operationen.",
+            "level": "leicht",
+            "url": "",
+            "date": "2025-03-25",
+            "questions": [
+              {
+                "q": "Welcher Datentyp speichert eine Ganzzahl in Python?",
+                "options": ["str", "float", "int", "bool"],
+                "correct": 2
+              },
+              {
+                "q": "Was gibt print(type(3.14)) aus?",
+                "options": ["<class 'int'>", "<class 'float'>", "<class 'str'>", "<class 'num'>"],
+                "correct": 1
+              },
+              {
+                "q": "Wie startet man einen Kommentar in Python?",
+                "options": ["//", "/*", "#", "--"],
+                "correct": 2
+              }
+            ]
+          }
+        ]
       },
       {
-        "q": "Welcher Wert ergibt sich aus: 1 OR 0?",
-        "options": ["0", "1", "Undefiniert", "2"],
-        "correct": 1
-      },
-      {
-        "q": "Was ergibt 0 XOR 1?",
-        "options": ["0", "1", "2", "Undefiniert"],
-        "correct": 1
+        "id": "algorithmen",
+        "titel": "Algorithmen & Sortieren",
+        "beschreibung": "Grundlegende Sortier- und Suchalgorithmen verstehen und implementieren.",
+        "material": [
+          {
+            "id": 105,
+            "type": "link",
+            "title": "Visualgo – Algorithmen visualisiert",
+            "desc": "Interaktive Visualisierungen von Sortier- und Suchalgorithmen.",
+            "level": "",
+            "url": "https://visualgo.net/de",
+            "date": "2025-03-22"
+          },
+          {
+            "id": 106,
+            "type": "quiz",
+            "title": "Quiz: Sortieralgorithmen",
+            "desc": "Bubble Sort, Selection Sort und Insertion Sort im Vergleich.",
+            "level": "mittel",
+            "url": "",
+            "date": "2025-03-28",
+            "questions": [
+              {
+                "q": "Wie viele Vergleiche benötigt Bubble Sort im schlechtesten Fall bei n Elementen?",
+                "options": ["n", "n log n", "n²", "n³"],
+                "correct": 2
+              },
+              {
+                "q": "Welcher Algorithmus teilt die Liste rekursiv in zwei Hälften?",
+                "options": ["Bubble Sort", "Selection Sort", "Merge Sort", "Insertion Sort"],
+                "correct": 2
+              }
+            ]
+          }
+        ]
       }
     ]
   },
   {
-    "id": 3,
-    "type": "link",
-    "title": "CS50: Introduction to Programming",
-    "topic": "Allgemein",
-    "desc": "Der kostenlose Harvard-Kurs CS50 – ideal zur Vertiefung und als Ergänzung zum Unterricht.",
-    "klasse": "",
-    "level": "",
-    "url": "https://cs50.harvard.edu",
-    "date": "2025-03-18"
+    "stufe": "11",
+    "label": "Jahrgangsstufe 11",
+    "themen": [
+      {
+        "id": "logik-schaltungen",
+        "titel": "Logik & Schaltungen",
+        "beschreibung": "Boolesche Algebra, Wahrheitstabellen und Logikgatter.",
+        "material": [
+          {
+            "id": 201,
+            "type": "quiz",
+            "title": "Quiz: Boolesche Algebra",
+            "desc": "Überprüfe dein Wissen zu AND, OR, NOT und de Morgan.",
+            "level": "mittel",
+            "url": "",
+            "date": "2025-03-15",
+            "questions": [
+              {
+                "q": "Was ergibt NOT (A AND B)?",
+                "options": ["A AND B", "NOT A OR NOT B", "A OR B", "NOT A AND NOT B"],
+                "correct": 1
+              },
+              {
+                "q": "Welcher Wert ergibt sich aus: 1 OR 0?",
+                "options": ["0", "1", "Undefiniert", "2"],
+                "correct": 1
+              },
+              {
+                "q": "Was ergibt 0 XOR 1?",
+                "options": ["0", "1", "2", "Undefiniert"],
+                "correct": 1
+              }
+            ]
+          },
+          {
+            "id": 202,
+            "type": "pdf",
+            "title": "Arbeitsblatt: Wahrheitstabellen",
+            "desc": "Erstelle Wahrheitstabellen für zusammengesetzte Ausdrücke.",
+            "level": "mittel",
+            "url": "#",
+            "date": "2025-03-12"
+          }
+        ]
+      },
+      {
+        "id": "datenbanken",
+        "titel": "Datenbanken & SQL",
+        "beschreibung": "Relationale Datenbanken, ER-Modelle und SQL-Grundlagen.",
+        "material": [
+          {
+            "id": 203,
+            "type": "pdf",
+            "title": "Einführung in SQL",
+            "desc": "SELECT, WHERE, JOIN – die wichtigsten SQL-Befehle mit Beispielen.",
+            "level": "mittel",
+            "url": "#",
+            "date": "2025-04-01"
+          },
+          {
+            "id": 204,
+            "type": "link",
+            "title": "SQLZoo – Interaktives SQL-Training",
+            "desc": "Kostenlose interaktive SQL-Übungen direkt im Browser.",
+            "level": "",
+            "url": "https://sqlzoo.net",
+            "date": "2025-04-02"
+          }
+        ]
+      }
+    ]
   },
   {
-    "id": 4,
-    "type": "pdf",
-    "title": "Arbeitsblatt: Schleifen & Iteration",
-    "topic": "Python Grundlagen",
-    "desc": "For- und While-Schleifen mit Übungsaufgaben unterschiedlichen Schwierigkeitsgrades.",
-    "klasse": "10b",
-    "level": "mittel",
-    "url": "#",
-    "date": "2025-03-20"
-  },
-  {
-    "id": 5,
-    "type": "link",
-    "title": "Visualgo – Algorithmen visualisiert",
-    "topic": "Algorithmen",
-    "desc": "Interaktive Visualisierungen von Sortier- und Suchalgorithmen.",
-    "klasse": "",
-    "level": "",
-    "url": "https://visualgo.net/de",
-    "date": "2025-03-22"
+    "stufe": "12",
+    "label": "Jahrgangsstufe 12",
+    "themen": [
+      {
+        "id": "objektorientierung",
+        "titel": "Objektorientierte Programmierung",
+        "beschreibung": "Klassen, Objekte, Vererbung und Kapselung in Python.",
+        "material": [
+          {
+            "id": 301,
+            "type": "pdf",
+            "title": "Klassen & Objekte",
+            "desc": "Grundkonzepte der OOP: Klassen definieren, Objekte erstellen, Methoden nutzen.",
+            "level": "mittel",
+            "url": "#",
+            "date": "2025-04-05"
+          },
+          {
+            "id": 302,
+            "type": "pdf",
+            "title": "Vererbung & Polymorphismus",
+            "desc": "Wie Klassen voneinander erben und Methoden überschreiben.",
+            "level": "schwer",
+            "url": "#",
+            "date": "2025-04-08"
+          },
+          {
+            "id": 303,
+            "type": "quiz",
+            "title": "Quiz: OOP Konzepte",
+            "desc": "Teste dein Verständnis von Klassen, Vererbung und Kapselung.",
+            "level": "schwer",
+            "url": "",
+            "date": "2025-04-10",
+            "questions": [
+              {
+                "q": "Was ist eine Klasse in der OOP?",
+                "options": [
+                  "Eine Variable mit mehreren Werten",
+                  "Eine Vorlage/Bauplan für Objekte",
+                  "Eine Funktion ohne Rückgabewert",
+                  "Ein Datentyp wie int oder str"
+                ],
+                "correct": 1
+              },
+              {
+                "q": "Welches Schlüsselwort wird in Python für Vererbung genutzt?",
+                "options": ["extends", "inherits", "super", "Klammern mit Elternklasse"],
+                "correct": 3
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]

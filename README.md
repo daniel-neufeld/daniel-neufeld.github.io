@@ -1,36 +1,90 @@
 # Informatik – Herr Neufeld
 
-Unterrichtsmaterial-Website für den Informatikunterricht am Gymnasium.  
-Läuft statisch über **GitHub Pages** – alle Inhalte werden in `data.json` verwaltet.
+Unterrichtsmaterial-Website · Gymnasium · GitHub Pages  
+Alle Inhalte werden in `data.json` verwaltet.
 
 ---
 
-## Dateien im Repository
+## Struktur
 
-| Datei | Beschreibung |
-|---|---|
-| `index.html` | Die Website (nicht anfassen nötig) |
-| `data.json` | **Hier pflegst du alle Materialien** |
+Die Website ist dreistufig aufgebaut:
+
+```
+Jahrgangsstufe  →  Thema  →  Material
+```
+
+Das spiegelt sich direkt in `data.json` wider:
+
+```json
+[
+  {
+    "stufe": "10",
+    "label": "Jahrgangsstufe 10",
+    "themen": [
+      {
+        "id": "python-grundlagen",
+        "titel": "Python Grundlagen",
+        "beschreibung": "Kurze Beschreibung des Themas.",
+        "material": [
+          { ... },
+          { ... }
+        ]
+      }
+    ]
+  }
+]
+```
+
+---
+
+## Neue Jahrgangsstufe hinzufügen
+
+Füge am Ende des äußeren Arrays `[ ]` einen neuen Block ein:
+
+```json
+{
+  "stufe": "9",
+  "label": "Jahrgangsstufe 9",
+  "themen": []
+}
+```
+
+> `stufe` muss **eindeutig** sein (wird intern als ID verwendet).
+
+---
+
+## Neues Thema hinzufügen
+
+Füge im `"themen"`-Array der gewünschten Stufe einen neuen Block ein:
+
+```json
+{
+  "id": "netzwerke",
+  "titel": "Netzwerke & Internet",
+  "beschreibung": "Wie das Internet funktioniert – Protokolle, IP-Adressen, HTTP.",
+  "material": []
+}
+```
+
+> `id` muss **innerhalb der Stufe eindeutig** sein (nur Kleinbuchstaben, Bindestriche).
 
 ---
 
 ## Material hinzufügen
 
-Öffne `data.json` auf GitHub (Stift-Icon → Bearbeiten) und füge einen neuen Eintrag am Anfang des Arrays ein.
+Füge im `"material"`-Array des gewünschten Themas einen neuen Eintrag ein.
 
 ### Arbeitsblatt / PDF
 
 ```json
 {
-  "id": 101,
+  "id": 401,
   "type": "pdf",
   "title": "Titel des Arbeitsblatts",
-  "topic": "Thema / Kapitel",
-  "desc": "Kurze Beschreibung des Inhalts.",
-  "klasse": "10a",
-  "level": "leicht",
-  "url": "https://link-zum-pdf.de/datei.pdf",
-  "date": "2025-04-01"
+  "desc": "Kurze Beschreibung.",
+  "level": "mittel",
+  "url": "pdfs/dateiname.pdf",
+  "date": "2025-05-01"
 }
 ```
 
@@ -38,15 +92,13 @@ Läuft statisch über **GitHub Pages** – alle Inhalte werden in `data.json` ve
 
 ```json
 {
-  "id": 102,
+  "id": 402,
   "type": "link",
   "title": "Name des Links",
-  "topic": "Thema / Kapitel",
   "desc": "Kurze Beschreibung.",
-  "klasse": "",
   "level": "",
   "url": "https://beispiel.de",
-  "date": "2025-04-01"
+  "date": "2025-05-01"
 }
 ```
 
@@ -54,15 +106,13 @@ Läuft statisch über **GitHub Pages** – alle Inhalte werden in `data.json` ve
 
 ```json
 {
-  "id": 103,
+  "id": 403,
   "type": "quiz",
   "title": "Quiz: Thema",
-  "topic": "Thema / Kapitel",
   "desc": "Kurze Beschreibung.",
-  "klasse": "11",
-  "level": "mittel",
+  "level": "leicht",
   "url": "",
-  "date": "2025-04-01",
+  "date": "2025-05-01",
   "questions": [
     {
       "q": "Fragetext?",
@@ -73,31 +123,49 @@ Läuft statisch über **GitHub Pages** – alle Inhalte werden in `data.json` ve
 }
 ```
 
-> **`correct`** ist der **Index** (0–3) der richtigen Antwort.  
-> `"correct": 0` → Option A ist richtig, `"correct": 2` → Option C ist richtig.
+> **`correct`** ist der **Index** der richtigen Antwort (0 = A, 1 = B, 2 = C, 3 = D).
 
 ---
 
 ## Felder im Überblick
 
-| Feld | Pflicht | Mögliche Werte |
+| Feld | Pflicht | Werte |
 |---|---|---|
-| `id` | ✅ | Beliebige eindeutige Zahl |
+| `id` | ✅ | Eindeutige Zahl (global über alle Einträge) |
 | `type` | ✅ | `"pdf"` · `"link"` · `"quiz"` |
 | `title` | ✅ | Beliebiger Text |
-| `topic` | – | Beliebiger Text (z. B. `"Python Grundlagen"`) |
 | `desc` | – | Beliebiger Text |
-| `klasse` | – | z. B. `"10b"`, `"11"`, `""` für keine Angabe |
 | `level` | – | `"leicht"` · `"mittel"` · `"schwer"` · `""` |
-| `url` | – | Vollständige URL (`https://…`) oder `""` |
+| `url` | – | Vollständige URL oder relativer Pfad, `""` für keinen Link |
 | `date` | – | Format `YYYY-MM-DD` |
-| `questions` | Nur bei Quiz | Array von Fragen (siehe Beispiel oben) |
+| `questions` | Nur bei Quiz | Array von Fragen (siehe oben) |
 
 ---
 
-## Material löschen
+## Eintrag löschen
 
-Öffne `data.json`, suche den Eintrag nach `"title"` und lösche den gesamten `{ … }`-Block (inkl. dem Komma zum nächsten Eintrag).
+Öffne `data.json`, suche den Eintrag anhand von `"title"` oder `"id"` und lösche den gesamten `{ … }`-Block (inkl. dem Komma zum nächsten Eintrag).
+
+---
+
+## PDFs hosten
+
+PDFs direkt im Repository ablegen (z. B. im Ordner `pdfs/`):
+
+```
+mein-repo/
+├── index.html
+├── data.json
+└── pdfs/
+    ├── variablen.pdf
+    └── schleifen.pdf
+```
+
+In `data.json` dann mit relativem Pfad verlinken:
+
+```json
+"url": "pdfs/variablen.pdf"
+```
 
 ---
 
@@ -105,11 +173,4 @@ Läuft statisch über **GitHub Pages** – alle Inhalte werden in `data.json` ve
 
 1. Repository → **Settings** → **Pages**
 2. Source: **Deploy from a branch** → Branch: `main` / Ordner: `/ (root)`
-3. Speichern → Website ist unter `https://DEIN-NAME.github.io/REPO-NAME` erreichbar
-
----
-
-## PDFs hosten
-
-PDFs können direkt im Repository liegen (z. B. `pdfs/variablen.pdf`).  
-Der Link in `data.json` wäre dann: `"url": "pdfs/variablen.pdf"`
+3. Speichern → Seite erscheint unter `https://DEIN-NAME.github.io/REPO-NAME`
