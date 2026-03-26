@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "type": "pdf",
+    "title": "Variablen & Datentypen",
+    "topic": "Python Grundlagen",
+    "desc": "Einführung in Variablen, einfache Datentypen und Zuweisungen in Python.",
+    "klasse": "10b",
+    "level": "leicht",
+    "url": "#",
+    "date": "2025-03-10"
+  },
+  {
+    "id": 2,
+    "type": "quiz",
+    "title": "Quiz: Boolesche Algebra",
+    "topic": "Logik & Schaltungen",
+    "desc": "Überprüfe dein Wissen zu AND, OR, NOT und de Morgan.",
+    "klasse": "11",
+    "level": "mittel",
+    "url": "",
+    "date": "2025-03-15",
+    "questions": [
+      {
+        "q": "Was ergibt NOT (A AND B)?",
+        "options": ["A AND B", "NOT A OR NOT B", "A OR B", "NOT A AND NOT B"],
+        "correct": 1
+      },
+      {
+        "q": "Welcher Wert ergibt sich aus: 1 OR 0?",
+        "options": ["0", "1", "Undefiniert", "2"],
+        "correct": 1
+      },
+      {
+        "q": "Was ergibt 0 XOR 1?",
+        "options": ["0", "1", "2", "Undefiniert"],
+        "correct": 1
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "type": "link",
+    "title": "CS50: Introduction to Programming",
+    "topic": "Allgemein",
+    "desc": "Der kostenlose Harvard-Kurs CS50 – ideal zur Vertiefung und als Ergänzung zum Unterricht.",
+    "klasse": "",
+    "level": "",
+    "url": "https://cs50.harvard.edu",
+    "date": "2025-03-18"
+  },
+  {
+    "id": 4,
+    "type": "pdf",
+    "title": "Arbeitsblatt: Schleifen & Iteration",
+    "topic": "Python Grundlagen",
+    "desc": "For- und While-Schleifen mit Übungsaufgaben unterschiedlichen Schwierigkeitsgrades.",
+    "klasse": "10b",
+    "level": "mittel",
+    "url": "#",
+    "date": "2025-03-20"
+  },
+  {
+    "id": 5,
+    "type": "link",
+    "title": "Visualgo – Algorithmen visualisiert",
+    "topic": "Algorithmen",
+    "desc": "Interaktive Visualisierungen von Sortier- und Suchalgorithmen.",
+    "klasse": "",
+    "level": "",
+    "url": "https://visualgo.net/de",
+    "date": "2025-03-22"
+  }
+]

@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
   <style>
-    /* ── Design tokens ── */
     :root {
       --bg:       #F5F4F0;
       --surface:  #FFFFFF;
@@ -24,490 +23,178 @@
       --r: 6px;
       --shadow: 0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      min-height: 100vh;
-      font-size: 15px;
-      line-height: 1.6;
+      background: var(--bg); color: var(--ink);
+      min-height: 100vh; font-size: 15px; line-height: 1.6;
     }
 
-    /* ── Header ── */
+    /* Header */
     header {
-      background: var(--ink);
-      color: #fff;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      height: 60px;
-      border-bottom: 2px solid var(--accent);
+      background: var(--ink); color: #fff;
+      padding: 0 2rem; display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem;
+      position: sticky; top: 0; z-index: 100;
+      height: 60px; border-bottom: 2px solid var(--accent);
     }
-    .header-title {
-      display: flex;
-      align-items: baseline;
-      gap: .75rem;
-    }
-    .header-title .subject {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      letter-spacing: .01em;
-    }
-    .header-title .name {
-      font-family: 'DM Mono', monospace;
-      font-size: .75rem;
-      color: #9CA3AF;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    nav {
-      display: flex;
-      gap: .25rem;
-    }
+    .header-title { display: flex; align-items: baseline; gap: .75rem; }
+    .header-title .subject { font-family: 'Playfair Display', serif; font-size: 1.35rem; }
+    .header-title .name { font-family: 'DM Mono', monospace; font-size: .75rem; color: #9CA3AF; letter-spacing: .08em; text-transform: uppercase; }
+    nav { display: flex; gap: .25rem; }
     nav button {
-      background: none;
-      border: none;
-      color: #9CA3AF;
-      font-family: 'DM Sans', sans-serif;
-      font-size: .82rem;
-      padding: .3rem .7rem;
-      border-radius: var(--r);
-      cursor: pointer;
-      transition: color .15s, background .15s;
-      letter-spacing: .03em;
+      background: none; border: none; color: #9CA3AF;
+      font-family: 'DM Sans', sans-serif; font-size: .82rem;
+      padding: .3rem .7rem; border-radius: var(--r);
+      cursor: pointer; transition: color .15s, background .15s;
     }
-    nav button:hover,
-    nav button.active {
-      color: #fff;
-      background: rgba(255,255,255,.1);
-    }
-    nav button.active {
-      color: #fff;
-    }
+    nav button:hover, nav button.active { color: #fff; background: rgba(255,255,255,.1); }
 
-    /* ── Layout ── */
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2.5rem 1.5rem 4rem;
-    }
+    /* Layout */
+    main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
 
-    /* ── Hero / Intro ── */
+    /* Hero */
     .hero {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 2rem;
-      margin-bottom: 3rem;
-      padding-bottom: 2.5rem;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 2rem; margin-bottom: 3rem; padding-bottom: 2.5rem;
       border-bottom: 1px solid var(--border);
     }
-    .hero-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.6rem;
-      line-height: 1.15;
-      margin-bottom: .75rem;
-    }
-    .hero-text h1 span {
-      color: var(--accent);
-    }
-    .hero-text p {
-      color: var(--ink-2);
-      max-width: 500px;
-      font-weight: 300;
-      font-size: .95rem;
-    }
-    .hero-stats {
-      display: flex;
-      gap: 1.5rem;
-      flex-shrink: 0;
-    }
-    .stat {
-      text-align: center;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: .9rem 1.2rem;
-      min-width: 90px;
-    }
-    .stat-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 1.8rem;
-      font-weight: 500;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: .72rem;
-      color: var(--ink-2);
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      margin-top: .3rem;
-    }
+    .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 2.6rem; line-height: 1.15; margin-bottom: .75rem; }
+    .hero-text h1 span { color: var(--accent); }
+    .hero-text p { color: var(--ink-2); max-width: 500px; font-weight: 300; font-size: .95rem; }
+    .hero-stats { display: flex; gap: 1.5rem; flex-shrink: 0; }
+    .stat { text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: .9rem 1.2rem; min-width: 90px; }
+    .stat-num { font-family: 'DM Mono', monospace; font-size: 1.8rem; font-weight: 500; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: .72rem; color: var(--ink-2); text-transform: uppercase; letter-spacing: .06em; margin-top: .3rem; }
 
-    /* ── Filter bar ── */
-    .filter-bar {
-      display: flex;
-      gap: .5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.75rem;
-      align-items: center;
-    }
-    .filter-bar span {
-      font-size: .78rem;
-      color: var(--ink-2);
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      margin-right: .5rem;
-    }
+    /* Filter bar */
+    .filter-bar { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.75rem; align-items: center; }
+    .filter-bar > span { font-size: .78rem; color: var(--ink-2); letter-spacing: .04em; text-transform: uppercase; margin-right: .5rem; }
     .filter-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 99px;
-      padding: .3rem .85rem;
-      font-size: .8rem;
-      font-family: 'DM Sans', sans-serif;
-      cursor: pointer;
-      transition: all .15s;
-      color: var(--ink-2);
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 99px; padding: .3rem .85rem; font-size: .8rem;
+      font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all .15s; color: var(--ink-2);
     }
     .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .filter-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
+    .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-    /* ── Search ── */
-    .search-wrap {
-      position: relative;
-      margin-left: auto;
-    }
+    /* Search */
+    .search-wrap { position: relative; margin-left: auto; }
     .search-wrap input {
-      border: 1px solid var(--border);
-      border-radius: 99px;
-      padding: .3rem 1rem .3rem 2.1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: .82rem;
-      background: var(--surface);
-      color: var(--ink);
-      outline: none;
-      width: 200px;
-      transition: border-color .15s;
+      border: 1px solid var(--border); border-radius: 99px;
+      padding: .3rem 1rem .3rem 2.1rem; font-family: 'DM Sans', sans-serif;
+      font-size: .82rem; background: var(--surface); color: var(--ink);
+      outline: none; width: 200px; transition: border-color .15s;
     }
     .search-wrap input:focus { border-color: var(--accent); }
-    .search-wrap svg {
-      position: absolute;
-      left: .7rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--ink-2);
-      pointer-events: none;
-    }
+    .search-wrap svg { position: absolute; left: .7rem; top: 50%; transform: translateY(-50%); color: var(--ink-2); pointer-events: none; }
 
-    /* ── Card grid ── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.25rem;
-    }
-
-    /* ── Card ── */
+    /* Cards */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.25rem; }
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      transition: transform .18s, box-shadow .18s;
-      overflow: hidden;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); box-shadow: var(--shadow);
+      display: flex; flex-direction: column;
+      transition: transform .18s, box-shadow .18s; overflow: hidden;
       animation: fadeUp .3s ease both;
     }
-    .card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0,0,0,.1);
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 
-    .card-header {
-      padding: 1.1rem 1.25rem .8rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: .5rem;
-    }
-    .card-type-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: var(--r);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1rem;
-    }
+    .card-header { padding: 1.1rem 1.25rem .8rem; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: .5rem; }
+    .card-type-icon { width: 34px; height: 34px; border-radius: var(--r); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
     .icon-pdf  { background: #FEE2E2; }
     .icon-quiz { background: #EDE9FE; }
     .icon-link { background: #DCFCE7; }
+    .card-meta { flex: 1; }
+    .card-meta h3 { font-size: .92rem; font-weight: 600; line-height: 1.3; margin-bottom: .25rem; }
+    .card-meta .topic { font-size: .75rem; color: var(--ink-2); font-family: 'DM Mono', monospace; letter-spacing: .04em; }
+    .card-body { padding: .85rem 1.25rem; flex: 1; }
+    .card-body p { font-size: .85rem; color: var(--ink-2); font-weight: 300; line-height: 1.55; }
+    .card-footer { padding: .75rem 1.25rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+    .tags { display: flex; gap: .35rem; flex-wrap: wrap; }
+    .tag { font-size: .7rem; padding: .15rem .55rem; border-radius: 99px; font-weight: 500; }
+    .tag-klasse { background: var(--tag-1); color: var(--tag-1-ink); }
+    .tag-thema  { background: var(--tag-3); color: var(--tag-3-ink); }
+    .tag-schwer { background: var(--tag-4); color: var(--tag-4-ink); }
+    .tag-leicht { background: var(--tag-2); color: var(--tag-2-ink); }
 
-    .card-meta {
-      flex: 1;
-    }
-    .card-meta h3 {
-      font-size: .92rem;
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: .25rem;
-    }
-    .card-meta .topic {
-      font-size: .75rem;
-      color: var(--ink-2);
-      font-family: 'DM Mono', monospace;
-      letter-spacing: .04em;
-    }
-
-    .card-body {
-      padding: .85rem 1.25rem;
-      flex: 1;
-    }
-    .card-body p {
-      font-size: .85rem;
-      color: var(--ink-2);
-      font-weight: 300;
-      line-height: 1.55;
-    }
-
-    .card-footer {
-      padding: .75rem 1.25rem;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: .5rem;
-    }
-    .tags {
-      display: flex;
-      gap: .35rem;
-      flex-wrap: wrap;
-    }
-    .tag {
-      font-size: .7rem;
-      padding: .15rem .55rem;
-      border-radius: 99px;
-      font-weight: 500;
-      letter-spacing: .02em;
-    }
-    .tag-klasse  { background: var(--tag-1); color: var(--tag-1-ink); }
-    .tag-thema   { background: var(--tag-3); color: var(--tag-3-ink); }
-    .tag-schwer  { background: var(--tag-4); color: var(--tag-4-ink); }
-    .tag-leicht  { background: var(--tag-2); color: var(--tag-2-ink); }
-
-    .card-action {
-      display: flex;
-      gap: .4rem;
-    }
+    /* Buttons */
     .btn {
-      font-family: 'DM Sans', sans-serif;
-      font-size: .78rem;
-      font-weight: 600;
-      padding: .35rem .8rem;
-      border-radius: var(--r);
-      cursor: pointer;
-      border: none;
-      transition: all .15s;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: .3rem;
+      font-family: 'DM Sans', sans-serif; font-size: .78rem; font-weight: 600;
+      padding: .35rem .8rem; border-radius: var(--r); cursor: pointer; border: none;
+      transition: all .15s; text-decoration: none; display: inline-flex; align-items: center; gap: .3rem;
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
+    .btn-primary { background: var(--accent); color: #fff; }
     .btn-primary:hover { background: #1e40af; }
-    .btn-ghost {
-      background: transparent;
-      color: var(--ink-2);
-      border: 1px solid var(--border);
-    }
+    .btn-ghost { background: transparent; color: var(--ink-2); border: 1px solid var(--border); }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* ── Modal ── */
+    /* States */
+    .state-box { grid-column: 1/-1; text-align: center; padding: 4rem 1rem; color: var(--ink-2); }
+    .state-box p { font-size: .9rem; margin-bottom: .4rem; }
+    .state-box .hint { font-size: .78rem; font-family: 'DM Mono', monospace; color: #9ca3af; }
+    .spinner { width: 36px; height: 36px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; margin: 0 auto 1rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Modal */
     .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(26,25,23,.55);
-      backdrop-filter: blur(3px);
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .2s;
+      position: fixed; inset: 0; background: rgba(26,25,23,.55);
+      backdrop-filter: blur(3px); z-index: 200;
+      display: flex; align-items: center; justify-content: center; padding: 1rem;
+      opacity: 0; pointer-events: none; transition: opacity .2s;
     }
-    .modal-overlay.open {
-      opacity: 1;
-      pointer-events: all;
-    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
     .modal {
-      background: var(--surface);
-      border-radius: 10px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.2);
-      width: 100%;
-      max-width: 600px;
-      max-height: 90vh;
-      overflow-y: auto;
-      transform: translateY(16px);
-      transition: transform .2s;
+      background: var(--surface); border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.2); width: 100%;
+      max-width: 600px; max-height: 90vh; overflow-y: auto;
+      transform: translateY(16px); transition: transform .2s;
     }
     .modal-overlay.open .modal { transform: translateY(0); }
-    .modal-top {
-      padding: 1.5rem 1.5rem 1rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    .modal-top h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-    }
-    .modal-close {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--ink-2);
-      font-size: 1.2rem;
-      padding: .2rem;
-      line-height: 1;
-      transition: color .15s;
-    }
+    .modal-top { padding: 1.5rem 1.5rem 1rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+    .modal-top h2 { font-family: 'Playfair Display', serif; font-size: 1.25rem; }
+    .modal-close { background: none; border: none; cursor: pointer; color: var(--ink-2); font-size: 1.2rem; padding: .2rem; line-height: 1; transition: color .15s; }
     .modal-close:hover { color: var(--ink); }
     .modal-body { padding: 1.25rem 1.5rem 1.5rem; }
 
-    /* ── Form ── */
-    .form-group { margin-bottom: 1rem; }
-    .form-group label {
-      display: block;
-      font-size: .8rem;
-      font-weight: 600;
-      color: var(--ink-2);
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      margin-bottom: .4rem;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: .55rem .8rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: .88rem;
-      color: var(--ink);
-      background: var(--bg);
-      outline: none;
-      transition: border-color .15s;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--accent); }
-    .form-group textarea { resize: vertical; min-height: 80px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
-
-    /* ── Quiz modal ── */
-    .quiz-q {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: 1rem;
-      margin-bottom: .75rem;
-    }
-    .quiz-q p { font-weight: 600; margin-bottom: .6rem; font-size: .9rem; }
+    /* Quiz */
+    .quiz-q { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 1rem; margin-bottom: .75rem; }
+    .quiz-q > p { font-weight: 600; margin-bottom: .6rem; font-size: .9rem; }
     .quiz-options { display: flex; flex-direction: column; gap: .4rem; }
     .quiz-option {
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      padding: .5rem .75rem;
-      cursor: pointer;
-      font-size: .85rem;
-      transition: border-color .15s, background .15s;
+      display: flex; align-items: center; gap: .6rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r); padding: .5rem .75rem;
+      cursor: pointer; font-size: .85rem; transition: border-color .15s, background .15s;
     }
     .quiz-option:hover { border-color: var(--accent); background: var(--accent-2); }
     .quiz-option.correct { border-color: #16a34a; background: #f0fdf4; color: #15803d; }
     .quiz-option.wrong   { border-color: #dc2626; background: #fef2f2; color: #b91c1c; }
     .quiz-option input[type="radio"] { accent-color: var(--accent); }
 
-    /* ── Empty state ── */
-    .empty {
-      text-align: center;
-      padding: 4rem 1rem;
-      color: var(--ink-2);
-    }
-    .empty svg { opacity: .25; margin-bottom: 1rem; }
-    .empty p { font-size: .9rem; }
-
-    /* ── Toast ── */
+    /* Toast */
     .toast {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      background: var(--ink);
-      color: #fff;
-      padding: .65rem 1.1rem;
-      border-radius: var(--r);
-      font-size: .83rem;
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      background: var(--ink); color: #fff; padding: .65rem 1.1rem;
+      border-radius: var(--r); font-size: .83rem;
       box-shadow: 0 4px 20px rgba(0,0,0,.2);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity .2s, transform .2s;
-      pointer-events: none;
-      z-index: 300;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity .2s, transform .2s; pointer-events: none; z-index: 300;
     }
     .toast.show { opacity: 1; transform: translateY(0); }
 
-    /* ── Footer ── */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: var(--ink-2);
-      font-size: .75rem;
-      border-top: 1px solid var(--border);
-      letter-spacing: .04em;
-    }
+    footer { text-align: center; padding: 2rem; color: var(--ink-2); font-size: .75rem; border-top: 1px solid var(--border); letter-spacing: .04em; }
 
     @media (max-width: 640px) {
       .hero { flex-direction: column; }
       .hero-stats { gap: .75rem; }
-      .form-row { grid-template-columns: 1fr; }
       nav { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
 <header>
   <div class="header-title">
     <span class="subject">Informatik</span>
@@ -521,32 +208,19 @@
   </nav>
 </header>
 
-<!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
 <main>
-
-  <!-- Hero -->
   <div class="hero">
     <div class="hero-text">
       <h1>Lernmaterial<br><span>Informatik</span></h1>
       <p>Arbeitsblätter, interaktive Aufgaben und kuratierte Links für den Informatikunterricht am Gymnasium.</p>
     </div>
     <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-num" id="count-pdf">0</div>
-        <div class="stat-label">Blätter</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num" id="count-quiz">0</div>
-        <div class="stat-label">Quizze</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num" id="count-link">0</div>
-        <div class="stat-label">Links</div>
-      </div>
+      <div class="stat"><div class="stat-num" id="count-pdf">–</div><div class="stat-label">Blätter</div></div>
+      <div class="stat"><div class="stat-num" id="count-quiz">–</div><div class="stat-label">Quizze</div></div>
+      <div class="stat"><div class="stat-num" id="count-link">–</div><div class="stat-label">Links</div></div>
     </div>
   </div>
 
-  <!-- Filter + Search -->
   <div class="filter-bar">
     <span>Filter:</span>
     <button class="filter-btn active" onclick="setFilter('alle')" data-filter="alle">Alle</button>
@@ -559,86 +233,19 @@
       </svg>
       <input type="text" id="search" placeholder="Suchen …" oninput="renderCards()" />
     </div>
-    <button class="btn btn-primary" onclick="openAddModal()" style="margin-left:auto;">
-      <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
-      Neu
-    </button>
   </div>
 
-  <!-- Card grid -->
-  <div class="card-grid" id="card-grid"></div>
-
+  <div class="card-grid" id="card-grid">
+    <div class="state-box">
+      <div class="spinner"></div>
+      <p>Materialien werden geladen …</p>
+    </div>
+  </div>
 </main>
 
 <footer>Informatik · Herr Neufeld · <span id="year"></span></footer>
 
-<!-- ═══════════════ MODAL: Material hinzufügen ═══════════════ -->
-<div class="modal-overlay" id="add-modal" onclick="closeOnOverlay(event,'add-modal')">
-  <div class="modal">
-    <div class="modal-top">
-      <h2>Neues Material</h2>
-      <button class="modal-close" onclick="closeModal('add-modal')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group">
-        <label>Typ</label>
-        <select id="f-type" onchange="toggleTypeFields()">
-          <option value="pdf">📄 Arbeitsblatt / PDF</option>
-          <option value="quiz">🧩 Quiz</option>
-          <option value="link">🔗 Link / Video</option>
-        </select>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Titel</label>
-          <input id="f-title" type="text" placeholder="z. B. Variablen & Datentypen" />
-        </div>
-        <div class="form-group">
-          <label>Thema / Kapitel</label>
-          <input id="f-topic" type="text" placeholder="z. B. Python Grundlagen" />
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Beschreibung</label>
-        <textarea id="f-desc" placeholder="Kurze Beschreibung des Inhalts …"></textarea>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Klasse</label>
-          <input id="f-klasse" type="text" placeholder="z. B. 10b" />
-        </div>
-        <div class="form-group">
-          <label>Schwierigkeit</label>
-          <select id="f-level">
-            <option value="">– keine Angabe –</option>
-            <option value="leicht">Leicht</option>
-            <option value="mittel">Mittel</option>
-            <option value="schwer">Schwer</option>
-          </select>
-        </div>
-      </div>
-      <!-- PDF / Link fields -->
-      <div id="field-url" class="form-group">
-        <label id="url-label">URL / Dateilink</label>
-        <input id="f-url" type="url" placeholder="https://" />
-      </div>
-      <!-- Quiz builder -->
-      <div id="field-quiz" style="display:none;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem;">
-          <label style="font-size:.8rem;font-weight:600;color:var(--ink-2);text-transform:uppercase;letter-spacing:.05em;">Fragen</label>
-          <button class="btn btn-ghost" onclick="addQuizQuestion()" style="font-size:.75rem;">+ Frage hinzufügen</button>
-        </div>
-        <div id="quiz-builder"></div>
-      </div>
-      <div style="display:flex;gap:.6rem;justify-content:flex-end;margin-top:1.25rem;">
-        <button class="btn btn-ghost" onclick="closeModal('add-modal')">Abbrechen</button>
-        <button class="btn btn-primary" onclick="saveCard()">Speichern</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════ MODAL: Quiz spielen ═══════════════ -->
+<!-- Quiz Modal -->
 <div class="modal-overlay" id="quiz-modal" onclick="closeOnOverlay(event,'quiz-modal')">
   <div class="modal">
     <div class="modal-top">
@@ -649,107 +256,56 @@
   </div>
 </div>
 
-<!-- Toast -->
 <div class="toast" id="toast"></div>
 
-<!-- ═══════════════════════════════ JS ═══════════════════════════════ -->
 <script>
-  /* ── Data store ── */
-  const STORE_KEY = 'neufeld_material_v1';
-
-  function load() {
-    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
-    catch { return []; }
-  }
-  function save(data) {
-    localStorage.setItem(STORE_KEY, JSON.stringify(data));
-  }
-
-  /* Demo-Daten beim ersten Besuch */
-  function seed() {
-    if (load().length) return;
-    const demo = [
-      {
-        id: 1, type: 'pdf', title: 'Variablen & Datentypen', topic: 'Python Grundlagen',
-        desc: 'Einführung in Variablen, einfache Datentypen und Zuweisungen in Python.',
-        klasse: '10b', level: 'leicht', url: '#', date: '2025-03-10'
-      },
-      {
-        id: 2, type: 'quiz', title: 'Quiz: Boolesche Algebra', topic: 'Logik & Schaltungen',
-        desc: 'Überprüfe dein Wissen zu AND, OR, NOT und de Morgan.',
-        klasse: '11', level: 'mittel', url: '',
-        questions: [
-          {
-            q: 'Was ergibt NOT (A AND B)?',
-            options: ['A AND B', 'NOT A OR NOT B', 'A OR B', 'NOT A AND NOT B'],
-            correct: 1
-          },
-          {
-            q: 'Welcher Wert ergibt sich aus: 1 OR 0?',
-            options: ['0', '1', 'Undefiniert', '2'],
-            correct: 1
-          },
-          {
-            q: 'Was ergibt 0 XOR 1?',
-            options: ['0', '1', '2', 'Undefiniert'],
-            correct: 1
-          }
-        ],
-        date: '2025-03-15'
-      },
-      {
-        id: 3, type: 'link', title: 'CS50: Introduction to Programming', topic: 'Allgemein',
-        desc: 'Der kostenlose Harvard-Kurs CS50 – ideal zur Vertiefung und als Ergänzung zum Unterricht.',
-        klasse: '', level: '', url: 'https://cs50.harvard.edu', date: '2025-03-18'
-      },
-      {
-        id: 4, type: 'pdf', title: 'Arbeitsblatt: Schleifen & Iteration', topic: 'Python Grundlagen',
-        desc: 'For- und While-Schleifen mit Übungsaufgaben unterschiedlichen Schwierigkeitsgrades.',
-        klasse: '10b', level: 'mittel', url: '#', date: '2025-03-20'
-      },
-      {
-        id: 5, type: 'link', title: 'Visualgo – Algorithmen visualisiert', topic: 'Algorithmen',
-        desc: 'Interaktive Visualisierungen von Sortier- und Suchalgorithmen.',
-        klasse: '', level: '', url: 'https://visualgo.net/de', date: '2025-03-22'
-      }
-    ];
-    save(demo);
-  }
-
-  /* ── State ── */
+  let allData = [];
   let activeFilter = 'alle';
-  let quizBuilder = [];
+  let answered = {};
 
-  /* ── Init ── */
-  seed();
-  updateStats();
-  renderCards();
   document.getElementById('year').textContent = new Date().getFullYear();
+  loadData();
 
-  /* ── Stats ── */
-  function updateStats() {
-    const data = load();
-    document.getElementById('count-pdf').textContent  = data.filter(d=>d.type==='pdf').length;
-    document.getElementById('count-quiz').textContent = data.filter(d=>d.type==='quiz').length;
-    document.getElementById('count-link').textContent = data.filter(d=>d.type==='link').length;
+  async function loadData() {
+    try {
+      const res = await fetch('data.json?v=' + Date.now());
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      allData = await res.json();
+      updateStats();
+      renderCards();
+    } catch (err) {
+      document.getElementById('card-grid').innerHTML = `
+        <div class="state-box">
+          <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0
+                 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898
+                 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/>
+          </svg>
+          <p>Fehler beim Laden der Daten.</p>
+          <p class="hint">Stelle sicher, dass <code>data.json</code> im selben Ordner liegt und gültiges JSON enthält.</p>
+          <p class="hint" style="margin-top:.3rem">${esc(err.message)}</p>
+        </div>`;
+    }
   }
 
-  /* ── Filter ── */
+  function updateStats() {
+    document.getElementById('count-pdf').textContent  = allData.filter(d => d.type === 'pdf').length;
+    document.getElementById('count-quiz').textContent = allData.filter(d => d.type === 'quiz').length;
+    document.getElementById('count-link').textContent = allData.filter(d => d.type === 'link').length;
+  }
+
   function setFilter(f) {
     activeFilter = f;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === f));
-    document.querySelectorAll('nav button').forEach(b => {
-      const map = { alle:'alle', pdf:'pdf', quiz:'quiz', link:'link' };
-      b.classList.toggle('active', b.textContent.toLowerCase().includes(f) || (f==='alle' && b.textContent==='Alle'));
-    });
+    const labels = { alle:'Alle', pdf:'Arbeitsblätter', quiz:'Quizze', link:'Links' };
+    document.querySelectorAll('nav button').forEach(b => b.classList.toggle('active', b.textContent.trim() === labels[f]));
     renderCards();
   }
 
-  /* ── Render ── */
   function renderCards() {
-    const data = load();
     const q = document.getElementById('search').value.toLowerCase();
-    const filtered = data.filter(d => {
+    const filtered = allData.filter(d => {
       const matchFilter = activeFilter === 'alle' || d.type === activeFilter;
       const matchSearch = !q || [d.title, d.topic, d.desc, d.klasse].some(s => (s||'').toLowerCase().includes(q));
       return matchFilter && matchSearch;
@@ -757,170 +313,81 @@
 
     const grid = document.getElementById('card-grid');
     if (!filtered.length) {
-      grid.innerHTML = `<div class="empty" style="grid-column:1/-1">
-        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <p>Keine Einträge gefunden.</p></div>`;
+      grid.innerHTML = `<div class="state-box">
+        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <p>Keine Einträge gefunden.</p>
+      </div>`;
       return;
     }
 
-    grid.innerHTML = filtered.map(d => cardHTML(d)).join('');
+    grid.innerHTML = filtered.map((d, i) => cardHTML(d, i)).join('');
   }
 
-  function cardHTML(d) {
-    const icons = { pdf: '📄', quiz: '🧩', link: '🔗' };
-    const iconClass = { pdf: 'icon-pdf', quiz: 'icon-quiz', link: 'icon-link' };
-    const tagLevel = d.level ? `<span class="tag ${d.level==='leicht'?'tag-leicht':'tag-schwer'}">${cap(d.level)}</span>` : '';
-    const tagKlasse = d.klasse ? `<span class="tag tag-klasse">${d.klasse}</span>` : '';
-    const tagTopic = d.topic ? `<span class="tag tag-thema">${d.topic}</span>` : '';
+  function cardHTML(d, i) {
+    const icons     = { pdf:'📄', quiz:'🧩', link:'🔗' };
+    const iconClass = { pdf:'icon-pdf', quiz:'icon-quiz', link:'icon-link' };
+    const tagLevel  = d.level  ? `<span class="tag ${d.level==='leicht'?'tag-leicht':'tag-schwer'}">${cap(d.level)}</span>` : '';
+    const tagKlasse = d.klasse ? `<span class="tag tag-klasse">${esc(d.klasse)}</span>` : '';
+    const tagTopic  = d.topic  ? `<span class="tag tag-thema">${esc(d.topic)}</span>` : '';
 
     const action = d.type === 'quiz'
       ? `<button class="btn btn-primary" onclick="openQuiz(${d.id})">Quiz starten</button>`
       : d.url && d.url !== '#'
-        ? `<a class="btn btn-primary" href="${d.url}" target="_blank" rel="noopener">Öffnen ↗</a>`
+        ? `<a class="btn btn-primary" href="${esc(d.url)}" target="_blank" rel="noopener">Öffnen ↗</a>`
         : `<button class="btn btn-ghost" disabled>Kein Link</button>`;
 
     return `
-    <div class="card" data-id="${d.id}">
-      <div class="card-header">
-        <div class="card-type-icon ${iconClass[d.type]}">${icons[d.type]}</div>
-        <div class="card-meta">
-          <h3>${esc(d.title)}</h3>
-          <div class="topic">${esc(d.topic||'')}</div>
+      <div class="card" style="animation-delay:${i*40}ms">
+        <div class="card-header">
+          <div class="card-type-icon ${iconClass[d.type]}">${icons[d.type]}</div>
+          <div class="card-meta">
+            <h3>${esc(d.title)}</h3>
+            <div class="topic">${esc(d.topic||'')}</div>
+          </div>
         </div>
-      </div>
-      <div class="card-body"><p>${esc(d.desc||'')}</p></div>
-      <div class="card-footer">
-        <div class="tags">${tagKlasse}${tagTopic}${tagLevel}</div>
-        <div class="card-action">
-          <button class="btn btn-ghost" onclick="deleteCard(${d.id})" title="Löschen">🗑</button>
-          ${action}
+        <div class="card-body"><p>${esc(d.desc||'')}</p></div>
+        <div class="card-footer">
+          <div class="tags">${tagKlasse}${tagTopic}${tagLevel}</div>
+          <div>${action}</div>
         </div>
-      </div>
-    </div>`;
-  }
-
-  /* ── Add modal ── */
-  function openAddModal() {
-    quizBuilder = [];
-    document.getElementById('quiz-builder').innerHTML = '';
-    ['f-title','f-topic','f-desc','f-klasse','f-url'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('f-type').value = 'pdf';
-    document.getElementById('f-level').value = '';
-    toggleTypeFields();
-    openModal('add-modal');
-  }
-
-  function toggleTypeFields() {
-    const t = document.getElementById('f-type').value;
-    document.getElementById('field-url').style.display  = t !== 'quiz' ? 'block' : 'none';
-    document.getElementById('field-quiz').style.display = t === 'quiz' ? 'block' : 'none';
-    document.getElementById('url-label').textContent = t === 'link' ? 'URL / Link' : 'URL / Dateilink';
-  }
-
-  function addQuizQuestion() {
-    const idx = quizBuilder.length;
-    quizBuilder.push({ q: '', options: ['', '', '', ''], correct: 0 });
-    renderQuizBuilder();
-  }
-
-  function renderQuizBuilder() {
-    const el = document.getElementById('quiz-builder');
-    el.innerHTML = quizBuilder.map((item, i) => `
-      <div class="quiz-q" style="margin-bottom:.6rem;">
-        <div style="display:flex;justify-content:space-between;margin-bottom:.4rem;">
-          <label style="font-size:.78rem;font-weight:600;color:var(--ink-2);">Frage ${i+1}</label>
-          <button class="btn btn-ghost" style="font-size:.7rem;padding:.15rem .5rem;" onclick="removeQ(${i})">✕</button>
-        </div>
-        <input style="width:100%;border:1px solid var(--border);border-radius:var(--r);padding:.4rem .7rem;font-size:.85rem;background:var(--surface);outline:none;margin-bottom:.5rem;" 
-          placeholder="Fragentext …" value="${esc(item.q)}" oninput="quizBuilder[${i}].q=this.value" />
-        ${item.options.map((opt,j) => `
-          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;">
-            <input type="radio" name="correct_${i}" ${item.correct===j?'checked':''} onchange="quizBuilder[${i}].correct=${j}" />
-            <input style="flex:1;border:1px solid var(--border);border-radius:var(--r);padding:.3rem .6rem;font-size:.82rem;background:var(--surface);outline:none;" 
-              placeholder="Option ${j+1}" value="${esc(opt)}" oninput="quizBuilder[${i}].options[${j}]=this.value" />
-          </div>`).join('')}
-        <div style="font-size:.72rem;color:var(--ink-2);margin-top:.2rem;">☝️ Richtige Antwort = markiertes Radio</div>
-      </div>`).join('');
-  }
-
-  function removeQ(i) {
-    quizBuilder.splice(i, 1);
-    renderQuizBuilder();
-  }
-
-  function saveCard() {
-    const type  = document.getElementById('f-type').value;
-    const title = document.getElementById('f-title').value.trim();
-    if (!title) { showToast('Bitte Titel eingeben.'); return; }
-    const data = load();
-    const id = Date.now();
-    const card = {
-      id,
-      type,
-      title,
-      topic:  document.getElementById('f-topic').value.trim(),
-      desc:   document.getElementById('f-desc').value.trim(),
-      klasse: document.getElementById('f-klasse').value.trim(),
-      level:  document.getElementById('f-level').value,
-      url:    document.getElementById('f-url').value.trim(),
-      date:   new Date().toISOString().slice(0,10)
-    };
-    if (type === 'quiz') {
-      if (!quizBuilder.length) { showToast('Mindestens eine Frage hinzufügen.'); return; }
-      card.questions = quizBuilder.map(q => ({ ...q }));
-    }
-    data.unshift(card);
-    save(data);
-    updateStats();
-    renderCards();
-    closeModal('add-modal');
-    showToast('Material gespeichert ✓');
-  }
-
-  /* ── Delete ── */
-  function deleteCard(id) {
-    if (!confirm('Eintrag wirklich löschen?')) return;
-    const data = load().filter(d => d.id !== id);
-    save(data);
-    updateStats();
-    renderCards();
-    showToast('Gelöscht.');
+      </div>`;
   }
 
   /* ── Quiz player ── */
   function openQuiz(id) {
-    const card = load().find(d => d.id === id);
+    const card = allData.find(d => d.id === id);
     if (!card || !card.questions) return;
+    answered = {};
     document.getElementById('quiz-modal-title').textContent = card.title;
     const body = document.getElementById('quiz-modal-body');
-    body.innerHTML = card.questions.map((q, qi) => `
-      <div class="quiz-q" id="qq-${qi}">
-        <p>${qi+1}. ${esc(q.q)}</p>
-        <div class="quiz-options">
-          ${q.options.map((opt, oi) => `
-            <label class="quiz-option" id="qo-${qi}-${oi}" onclick="checkAnswer(${qi},${oi},${q.correct})">
-              <input type="radio" name="q${qi}" value="${oi}" style="pointer-events:none" />
-              ${esc(opt)}
-            </label>`).join('')}
-        </div>
-      </div>`).join('') +
-      `<div id="quiz-result" style="display:none;text-align:center;padding:1rem;font-size:1rem;font-weight:600;"></div>
+    body.innerHTML =
+      card.questions.map((q, qi) => `
+        <div class="quiz-q" id="qq-${qi}">
+          <p>${qi+1}. ${esc(q.q)}</p>
+          <div class="quiz-options">
+            ${q.options.map((opt, oi) => `
+              <label class="quiz-option" id="qo-${qi}-${oi}" onclick="pickAnswer(${qi},${oi})">
+                <input type="radio" name="q${qi}" value="${oi}" style="pointer-events:none" />
+                ${esc(opt)}
+              </label>`).join('')}
+          </div>
+        </div>`).join('') +
+      `<div id="quiz-result" style="display:none;text-align:center;padding:1rem;font-size:1rem;font-weight:600;border-radius:var(--r);margin-top:.5rem;"></div>
        <div style="text-align:center;margin-top:1rem;">
-         <button class="btn btn-primary" onclick="submitQuiz(${card.questions.length})">Auswerten</button>
+         <button class="btn btn-primary" onclick="submitQuiz(${card.id})">Auswerten</button>
        </div>`;
     openModal('quiz-modal');
   }
 
-  let answered = {};
-  function checkAnswer(qi, oi, correct) {
-    answered[qi] = oi;
-  }
-  function submitQuiz(total) {
-    const data = load(); // just to get questions
-    let correct = 0;
-    const quizTitle = document.getElementById('quiz-modal-title').textContent;
-    const card = load().find(d => d.title === quizTitle);
+  function pickAnswer(qi, oi) { answered[qi] = oi; }
+
+  function submitQuiz(cardId) {
+    const card = allData.find(d => d.id === cardId);
     if (!card) return;
+    let correct = 0;
     card.questions.forEach((q, qi) => {
       const chosen = answered[qi];
       q.options.forEach((_, oi) => {
@@ -932,31 +399,22 @@
       });
       if (chosen === q.correct) correct++;
     });
-    const pct = Math.round(correct / total * 100);
-    const res = document.getElementById('quiz-result');
-    res.style.display = 'block';
+    const total = card.questions.length;
+    const pct   = Math.round(correct / total * 100);
+    const res   = document.getElementById('quiz-result');
     const emoji = pct >= 80 ? '🎉' : pct >= 50 ? '👍' : '📚';
+    res.style.display     = 'block';
+    res.style.background  = pct >= 80 ? '#f0fdf4' : pct >= 50 ? '#fefce8' : '#fef2f2';
     res.innerHTML = `${emoji} ${correct} von ${total} richtig – ${pct}%`;
-    answered = {};
   }
 
   /* ── Modal helpers ── */
-  function openModal(id) { document.getElementById(id).classList.add('open'); }
-  function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-  function closeOnOverlay(e, id) { if (e.target.id === id) closeModal(id); }
-
-  /* ── Toast ── */
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2400);
-  }
+  function openModal(id)             { document.getElementById(id).classList.add('open'); }
+  function closeModal(id)            { document.getElementById(id).classList.remove('open'); }
+  function closeOnOverlay(e, id)     { if (e.target.id === id) closeModal(id); }
 
   /* ── Helpers ── */
-  function esc(s) {
-    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
+  function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
   function cap(s) { return s ? s[0].toUpperCase() + s.slice(1) : ''; }
 </script>
 </body>
